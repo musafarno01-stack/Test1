@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_dark">#FF0F1115</color>
+    <color name="bg_panel">#FF1B1E24</color>
+    <color name="fg_light">#FFFFFFFF</color>
+    <color name="digit_bg">#FF262A33</color>
+    <color name="operator_bg">#FF2E3540</color>
+    <color name="equals_bg">#FF3B82F6</color>
+    <color name="accent_orange">#FFFF9F43</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
