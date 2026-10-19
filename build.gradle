@@ -1,4 +1,59 @@
-// Top-level build file
 plugins {
-    id 'com.android.application' version '8.1.4' apply false
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.example.calculator'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.example.calculator"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    signingConfigs {
+        release {
+            // Populated from environment variables when building a signed
+            // release APK (e.g. in GitHub Actions with secrets). If the env
+            // vars are absent, the release build falls back to the debug
+            // signing config so local builds still work out of the box.
+            def keystorePath = System.getenv("KEYSTORE_PATH")
+            if (keystorePath != null && !keystorePath.isEmpty() && new File(keystorePath).exists()) {
+                storeFile file(keystorePath)
+                storePassword System.getenv("KEYSTORE_PASSWORD")
+                keyAlias System.getenv("KEY_ALIAS")
+                keyPassword System.getenv("KEY_PASSWORD")
+            } else {
+                storeFile signingConfigs.debug.storeFile
+                storePassword signingConfigs.debug.storePassword
+                keyAlias signingConfigs.debug.keyAlias
+                keyPassword signingConfigs.debug.keyPassword
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 }
